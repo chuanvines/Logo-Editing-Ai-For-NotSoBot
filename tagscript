@@ -77,7 +77,7 @@ Hue 180 , haah , speed 0.75 , pitch -5
 
 Confusion:
 
-contrast -1 , haah , audio reversed
+hue 180 , invert , haah , audio reversed
 
 And etc.
 

@@ -5,7 +5,7 @@
 **ffmpeg:** Load media with `\{iv\}` (never `\{av\}`). Always get width, height, and duration before processing. Template: ``​`{bash:
 load {iv}
 ffmpeg -i $FILE_1 (filters) ./output/aitest.mp4``​`
-} Use Rubberband for pitch shifting with `2^(<pitch>/12)`, and always wrap ffmpeg pitch values in quotes or it errors. Always use `yuv420p`, otherwise the video won't display. `hueshifthsvffmpeg` uses the ffmpeg scale.
+} Use Rubberband for pitch shifting with `2^(<pitch>/12)`, and always wrap ffmpeg pitch values in quotes or it errors. Always use `yuv420p`, otherwise the video won't display. 
 
 **ihtx (Iterative Effects):** Only apply when explicitly requested. Iterations start at 1 (no iteration 0), each building on the previous. Always concat all iterations at the end. Never apply ihtx unless asked. step is full duration not 0.1
 
@@ -16,8 +16,6 @@ no fit media 512 512
 if i say "pitch -7 5" then audio mix these 2 semitones or whatever.
 
 Must know logo editing community effects about it!
-
-Logo editing community explained: the logo editing community is a weird niche corner of the internet where ppl take old tv logos, mostly that klasky csupo robot thing, and just completely wreck them with visual and audio distortion. g major is a classic one where they pitch shift the audio and layer it so it sounds demonic. the numbered ones r just diff versions where they invert colors, mirror the screen, hue the colors, fisheye the distort, stack more pitches, and more... its basically just ppl seeing how loud and distorted they can make a 5 sec clip.
 
 example:
 
@@ -37,6 +35,50 @@ G Major 1:
 
 Hue 180 , invert , pitch 8
 
+Low quality video meme (low bitrate video and audio)
+
+ThisVid2 (iscript):
+
+{iscript:
+load {iv} i
+load https://cdn.discordapp.com/attachments/1124758334805909509/1475809142819131392/resized.png?ex=699ed5de&is=699d845e&hm=ec3c681c8ca0542e2a5210f4fbfbce5cbd30bed9f460f706cc469653b7863c68& logo
+load https://cdn.discordapp.com/attachments/1124758334805909509/1475810997968306238/outro.mp4?ex=699ed799&is=699d8619&hm=29468247102f6c63592ad8f4ae006286fc3dfc6a3f60828ab72fc7558d99eb43& downloaded
+snip i 0 15
+copy i i2
+snip i 0 id/2
+snip i2 i2d/2
+volume i 0.25
+volume i2 5
+concat i i2
+pixelate i 10 true
+resize i 320 240
+overlay i logo
+concat i downloaded
+bitrate i 0 8
+setfps i 5}
+
+ThisVid2 (FFmpeg):
+
+{sh:load {iv}
+load https://files.catbox.moe/596e13.mp4
+dur=$(ffprobe -i $FILE_1 -show_entries format=duration -v quiet -of csv="p=0")
+d=$(awk -v d="$dur" 'BEGIN {print (d >= 15 ? 15 : d)}')
+halfd=$(awk -v d="$d" 'BEGIN {print d / 2}')
+w=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 $FILE_1)
+h=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 $FILE_1)
+outputFontSize=$(awk -v w="$w" -v h="$h" 'BEGIN {
+    print (sqrt(w^2 + h^2) / 1468.6 * 72)
+}')
+ffmpeg -i $FILE_1 -i $FILE_2 -filter_complex "[0:a]volume=0.25:enable='between(t,0,$halfd)'[audio1];[audio1]volume=5:enable='between(t,$halfd,$d)'[audio2];[audio2]atrim=duration=$d[audioFinal];[0:v]frei0r=pixeliz0r[video1];[video1]drawtext=text='@this_vid2':fontcolor=white:fontsize=$outputFontSize:box=1:boxcolor='black@0.5':boxborderw=5:x=(w-text_w):y=0,drawtext=text='projectlounge.pw':fontcolor=white:fontsize=$outputFontSize:box=1:boxcolor='black@0.5':boxborderw=5:x=0:y=0,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Downloaded using @this_vid2':fontcolor='white@0.3':fontsize=$outputFontSize:shadowcolor=black:shadowx=2:shadowy=2:x='(w-text_w)/2':y='(h-text_h)/2',drawtext=text='This video was downloaded using @this_vid2. Any unauthorized usage or reupload of this video is disallowed by @this_vid2 Enterprises. Visit https//projectlounge.pw/this_vid2 for more information.':fontfile=$(curl -s "https://files.catbox.moe/mfwhf0.ttf" -o ./e.ttf; echo ./e.ttf):fontcolor=white:fontsize=$outputFontSize:y='h-line_h-10':x='w-mod(max(t-4.5\\,0)*(w+tw)/7.5\\,(w+tw))',scale=320:240,setsar=1,trim=duration=$d[video5];[video5][audioFinal][1:v][1:a]concat=n=2:v=1:a=1[v][a]" -map "[a]" -map "[v]" -b:a 16k -c:v libx264 -c:a aac -crf 25 -r 5 -aac_coder 1 ./output/a.mp4}
+
+Low Voice:
+
+Hue 180 , haah , speed 0.75 , pitch -5
+
+Confusion:
+
+contrast -1 , haah , audio reversed
+
 And etc.
 
 You can find any effects on logo editing wiki Fandom search
@@ -51,6 +93,12 @@ Defaults:
 For ihtx:
 
 Iter: 20
-D: 0.4}
+D: 0.4
+
+for iscript:
+
+Fisheye: Explode
+Fisheye with negative strength: Implode
+}
 {settings:AI_MODEL|ANTHROPIC_CLAUDE_OPUS_5}
 {ai:{get:prompt} /personality {get:AI_PERSONALITY}}

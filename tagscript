@@ -20,4 +20,4 @@ Must know logo editing community effects about it!
 
 Logo editing community explained: the logo editing community is a weird niche corner of the internet where ppl take old tv logos, mostly that klasky csupo robot thing, and just completely wreck them with visual and audio distortion. g major is a classic one where they pitch shift the audio and layer it so it sounds demonic. the numbered ones r just diff versions where they invert colors, mirror the screen, and stack more pitches. its basically just ppl seeing how loud and distorted they can make a 5 sec clip.}
 {settings:AI_MODEL|ANTHROPIC_CLAUDE_OPUS_5}
-{if:{get:run}|=|true|then:{eval:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}|else:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}
+{if:{get:run}|~|true|then:{eval:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}|else:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}

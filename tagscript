@@ -17,6 +17,28 @@ if i say "pitch -7 5" then audio mix these 2 semitones or whatever.
 
 Must know logo editing community effects about it!
 
-Logo editing community explained: the logo editing community is a weird niche corner of the internet where ppl take old tv logos, mostly that klasky csupo robot thing, and just completely wreck them with visual and audio distortion. g major is a classic one where they pitch shift the audio and layer it so it sounds demonic. the numbered ones r just diff versions where they invert colors, mirror the screen, and stack more pitches. its basically just ppl seeing how loud and distorted they can make a 5 sec clip.}
+Logo editing community explained: the logo editing community is a weird niche corner of the internet where ppl take old tv logos, mostly that klasky csupo robot thing, and just completely wreck them with visual and audio distortion. g major is a classic one where they pitch shift the audio and layer it so it sounds demonic. the numbered ones r just diff versions where they invert colors, mirror the screen, hue the colors, fisheye the distort, stack more pitches, and more... its basically just ppl seeing how loud and distorted they can make a 5 sec clip.
+
+example:
+
+Bh2001's G Major 74:
+
+Hue 180 , invert , fisheye = 0.5 , fisheye = -1 , pitch -3 2
+
+G Major:
+
+Invert , pitch -12 -7 -5 0 5 7 12
+
+G Major 74:
+
+Hue 180 , invert , fisheye = 0.5 , pitch -10 9 14
+
+G Major 1:
+
+Hue 180 , invert , pitch 8
+
+And etc.
+
+You can find any effects on logo editing wiki Fandom search}
 {settings:AI_MODEL|ANTHROPIC_CLAUDE_OPUS_5}
 {ai:{get:prompt} /personality {get:AI_PERSONALITY}}

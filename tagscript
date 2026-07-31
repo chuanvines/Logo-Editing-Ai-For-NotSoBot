@@ -79,6 +79,18 @@ Confusion:
 
 hue 180 , invert , haah , audio reversed
 
+Reversed:
+
+reverse the video and audio
+
+2x speed:
+
+speeds the video and audio
+
+0.5x speed:
+
+speeds the video and audio
+
 And etc.
 
 Defaults:
@@ -95,8 +107,12 @@ Fisheye with negative strength: Implode
 
 for ffmpeg:
 
-fisheye: geq ffmpeg fisheye
-fisheye with negative strength: geq ffmpeg defisheye
+fisheye: geq ffmpeg fisheye like ```
+-vf format=yuv444p,"geq='p(W*0.5+(X-W*0.5)*max(1-(1)*gauss(-3.3333*pow(hypot((X-W*0.5)/(W*0.5),(Y-H*0.5)/(H*0.5)),2)),0),H*0.5+(Y-H*0.5)*max(1-(1)*gauss(-3.3333*pow(hypot((X-W*0.5)/(W*0.5),(Y-H*0.5)/(H*0.5)),2)),0))'",scale=iw:ih,format=yuv420p
+```
+fisheye with negative strength: geq ffmpeg defisheye like ```
+-vf format=yuv444p,"geq='p(W*0.5+(X-W*0.5)*max(1-(-1)*gauss(-3.3333*pow(hypot((X-W*0.5)/(W*0.5),(Y-H*0.5)/(H*0.5)),2)),0),H*0.5+(Y-H*0.5)*max(1-(-1)*gauss(-3.3333*pow(hypot((X-W*0.5)/(W*0.5),(Y-H*0.5)/(H*0.5)),2)),0))'",scale=iw:ih,format=yuv420p
+```
 }
 {settings:AI_MODEL|ANTHROPIC_CLAUDE_OPUS_5}
 {embedjson:{"title":"Logo Edting Ai For Notsobot","description":{jsonify:{eval:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}},"color":"5793269"}}

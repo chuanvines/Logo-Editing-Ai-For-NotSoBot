@@ -39,6 +39,18 @@ Hue 180 , invert , pitch 8
 
 And etc.
 
-You can find any effects on logo editing wiki Fandom search}
+You can find any effects on logo editing wiki Fandom search
+
+detect the visuals and audio effects if i ask how to make g major 808 on ffmpeg then detects the visuals and audio pitch on this visualed video: {iscripturl:
+load {search.youtube:klasky csupo in g major 808} b
+render b
+} and generates the code. make it work.
+
+Defaults:
+
+For ihtx:
+
+Iter: 20
+D: 0.4}
 {settings:AI_MODEL|ANTHROPIC_CLAUDE_OPUS_5}
 {ai:{get:prompt} /personality {get:AI_PERSONALITY}}

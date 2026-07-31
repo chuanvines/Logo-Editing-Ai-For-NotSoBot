@@ -99,6 +99,11 @@ for iscript:
 
 Fisheye: Explode
 Fisheye with negative strength: Implode
+
+for ffmpeg:
+
+fisheye: geq ffmpeg fisheye
+fisheye with negative strength: geq ffmpeg defisheye
 }
 {settings:AI_MODEL|ANTHROPIC_CLAUDE_OPUS_5}
-{ai:{get:prompt} /personality {get:AI_PERSONALITY}}
+{embedjson:{"title":"Logo Edting Ai For Notsobot","description":{jsonify:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}},"color":"5793269"}}

@@ -115,4 +115,4 @@ fisheye with negative strength: geq ffmpeg defisheye like ```
 ```
 }
 {settings:AI_MODEL|ANTHROPIC_CLAUDE_OPUS_5}
-{embedjson:{"title":"Logo Edting Ai For Notsobot","description":{jsonify:{if:{len:{eval:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}}|>|2000|then:{attachtext:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}|else:{eval:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}}},"color":"5793269"}}
+{embedjson:{"title":"Logo Edting Ai For Notsobot","description":{jsonify:{eval:{ai:{get:prompt} /personality {get:AI_PERSONALITY}}}},"color":"5793269"}}
